@@ -3,8 +3,13 @@ const api = {
   base: "https://api.openweathermap.org/data/2.5/"
 }
 
-const searchbox = document.querySelector('.search-box');
-searchbox.addEventListener('keypress', setQuery);
+document.addEventListener('DOMContentLoaded', () => {
+  const searchbox = document.querySelector('.search-box');
+  searchbox.addEventListener('keypress', setQuery);
+
+  // Trigger an initial display update for the default city
+  getResults('New York');
+});
 
 function setQuery(evt) {
   if (evt.keyCode == 13) {
@@ -16,7 +21,9 @@ function getResults (query) {
   fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
     .then(weather => {
       return weather.json();
-    }).then(displayResults);
+    }).then(displayResults
+      
+    );
 }
 
 function displayResults (weather) {
@@ -25,7 +32,7 @@ function displayResults (weather) {
 
   let now = new Date();
   let date = document.querySelector('.location .date');
-  date.innerText = dateBuilder(now);
+  date.innerText = `${dateBuilder(now)} ${getLocalTime(weather.timezone)}`;
 
   let temp = document.querySelector('.current .temp');
   temp.innerHTML = `${Math.round(weather.main.temp)}<span>°c</span>`;
@@ -35,6 +42,14 @@ function displayResults (weather) {
 
   let hilow = document.querySelector('.hi-low');
   hilow.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
+}
+
+function getLocalTime(timezoneOffset) {
+  let now = new Date();
+  let localTime = new Date(now.getTime() + timezoneOffset * 1000);
+  let hours = localTime.getUTCHours().toString().padStart(2, '0');
+  let minutes = localTime.getUTCMinutes().toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
 }
 
 function dateBuilder (d) {
