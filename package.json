@@ -1,0 +1,28 @@
+{
+  "name": "weather-ai",
+  "version": "1.0.0",
+  "description": "## Overview of Weather App",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcajith/Weather-AI.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcajith/Weather-AI/issues"
+  },
+  "homepage": "https://github.com/kcajith/Weather-AI#readme",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  }
+}
