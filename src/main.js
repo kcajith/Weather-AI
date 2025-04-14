@@ -1,5 +1,5 @@
 const api = {
-  key: "fcc8de7015bbb202209bbf0261babf4c",
+  key: "38126a2700c29c64b6581f1db027f9be", // Replace with your valid API key
   base: "https://api.openweathermap.org/data/2.5/"
 };
 
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function handleSearch(event) {
   if (event.keyCode === 13) {
     const searchbox = document.querySelector('.search-box');
+    console.log('Search input:', searchbox.value);
     fetchWeather(searchbox.value);
   }
 }
